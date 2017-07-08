@@ -77,6 +77,7 @@ mazebuilder::mazebuilder()
       }
     }
   }
+  myfile.close();
   table = new char*[row];
   for(int i=0;i<row;i++)
   {

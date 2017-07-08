@@ -12,7 +12,7 @@ int main()
   mazewalker* walk = new mazewalker(maze->getmaze(),maze->getrow(),maze->getcol(),maze->getstartrow(),maze->getstartcol());
   walk->print();
 
+  delete walk;
   delete maze;
-  delete walk;  
 
 }

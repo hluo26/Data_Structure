@@ -31,7 +31,7 @@ mazewalker::mazewalker(char** maze,int row, int col, int srow, int scol)
 
 mazewalker::~mazewalker()
 {
-  for(int i=0;i<m_col;i++)
+  for(int i=0;i<m_row;i++)
   {
     delete[] visited[i];
   }
@@ -94,6 +94,10 @@ void mazewalker::check(int x, int y)
         }
         //backtracking
         count--;
+        if(!solve)
+        {
+          visited[x][y]=0;
+        }
       }
     }
   }

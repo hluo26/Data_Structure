@@ -10,11 +10,10 @@ public:
   ~mazewalker();
   void check(int x,int y);
   void print();
-  int** getvisited();
 
 private:
   int** visited;
-  char** table;
+  const char* const* table;
   int m_row,m_col,m_srow,m_scol;
   int count;
   bool solve;
