@@ -93,7 +93,7 @@ void mazewalker::check(int x, int y)
           }
         }
         //backtracking
-        count--;
+        //count--;
         if(!solve)
         {
           visited[x][y]=0;
