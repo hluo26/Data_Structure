@@ -59,10 +59,10 @@ void sorts::mergesort(int arr[],int start,int end)
   if(start<end)
   {
     int median = start+(end-start)/2;
-    //std::cout<<"start is "<<start<<std::endl;
-    //std::cout<<"end is "<<end<<std::endl;
-    //std::cout<<"median is "<<median<<std::endl;
-    //std::cout<<std::endl;
+    /*std::cout<<"start is "<<start<<std::endl;
+    std::cout<<"end is "<<end<<std::endl;
+    std::cout<<"median is "<<median<<std::endl;
+    std::cout<<std::endl;*/
     mergesort(arr,start,median);
     mergesort(arr,median+1,end);
     merge(arr,start,median,end);
@@ -119,10 +119,37 @@ void sorts::merge(int arr[],int s,int m,int e)
     k++;
   }
   /*std::cout<<std::endl;
-  for(int c=0;c<k;c++)
+  for(int c=s;c<k;c++)
   {
     std::cout<<arr[c]<<" ";
-  }*/
+  }
+  std::cout<<std::endl;*/
+}
+
+void sorts::quicksort(int arr[],int start,int end)
+{
+  if(start<end)
+  {
+    int pivot = partition(arr,start,end);
+    quicksort(arr,start,pivot-1);
+    quicksort(arr,pivot+1,end);
+  }
+}
+
+int sorts::partition(int arr[],int s,int e)
+{
+  int i = s-1;
+  int j;
+  for(j = s;j<=e-1;j++)
+  {
+    if(arr[j]<arr[e])
+    {
+      i++;
+      swap(arr[j],arr[i]);
+    }
+  }
+  swap(arr[e],arr[i+1]);
+  return i+1;
 }
 
 void sorts::swap(int &x, int &y)

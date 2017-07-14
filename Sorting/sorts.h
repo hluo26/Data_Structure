@@ -10,6 +10,8 @@ void insertion(int arr[],int size);
 void selection(int arr[],int size);
 void mergesort(int arr[],int start,int end);
 void merge(int arr[],int s,int m,int e);
+void quicksort(int arr[],int start,int end);
+int partition(int arr[],int s,int e);
 private:
 
 };
