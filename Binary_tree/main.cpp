@@ -22,6 +22,8 @@ int main()
   newtree->add(0,14);
   newtree->printorder(1);
   newtree->printorder(2);
+  newtree->findlargest();
+  newtree->leaves();
 
   delete newtree;
 }

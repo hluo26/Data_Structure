@@ -64,6 +64,99 @@ node* bt::findparent(int key,node* subtree)
 
 }
 
+void bt::leaves()
+{
+  int l = countleaves(m_root);
+  if(l!=0)
+  {
+    std::cout<<"Number of leaves: "<<l<<std::endl;
+  }
+  else
+  {
+    std::cout<<"Empty tree"<<std::endl;
+  }
+}
+
+int bt::countleaves(node* root)
+{
+  if(root == nullptr)
+  {
+    return 0;
+  }
+  else
+  {
+    int leaves = 0;
+    std::queue<node*> q;
+    q.push(root);
+    while(q.empty()==false)
+    {
+      node* current = q.front();
+      if(current->getleft()==nullptr &&current->getright()==nullptr)
+      {
+        leaves++;
+      }
+      q.pop();
+
+      if(current->getleft()!=nullptr)
+      {
+        q.push(current->getleft());
+      }
+      if(current->getright()!=nullptr)
+      {
+        q.push(current->getright());
+      }
+    }
+    return leaves;
+  }
+}
+
+void bt::findlargest()
+{
+  int l = largest(m_root);
+  if(l!=0)
+  {
+    std::cout<<"Largest element: "<<l<<std::endl;
+  }
+  else
+  {
+    std::cout<<"Empty tree"<<std::endl;
+  }
+}
+
+int bt::largest(node* root)
+{
+  if(root == nullptr)
+  {
+    return 0;
+  }
+  else
+  {
+    int largest = root->getvalue();
+    std::queue<node*> q;
+    q.push(root);
+    while(q.empty()==false)
+    {
+      node* current = q.front();
+      int value = current->getvalue();
+      if(value>=largest)
+      {
+        largest = value;
+      }
+      q.pop();
+
+      if(current->getleft()!=nullptr)
+      {
+        q.push(current->getleft());
+      }
+      if(current->getright()!=nullptr)
+      {
+        q.push(current->getright());
+      }
+    }
+    return largest;
+  }
+}
+
 void bt::add(int x,int key)
 {
   insertion(x,key,m_root);

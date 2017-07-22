@@ -15,6 +15,10 @@ public:
   void print(int order,node* subtree);
   int height(node* root);
   void printlevel(int x,node* root);
+  void leaves();
+  int countleaves(node* root);
+  void findlargest();
+  int largest(node* root);
 
 private:
   node* m_root;
