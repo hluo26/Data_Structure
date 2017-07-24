@@ -11,9 +11,12 @@ public:
   void remove(int x);
   void print();
   int hashing(int x,int i);
-  void rehash(int size);
+  void rehash(int x);
   bool contains(int x);
   bool isfull();
+  int prime(int x);
+  bool isprime(int x);
+  int count();
 
 private:
   hashnode** table;

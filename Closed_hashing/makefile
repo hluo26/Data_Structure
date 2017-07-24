@@ -9,3 +9,7 @@ hash.o:	Hash.cpp	Hash.h	hashnode.h
 
 hashnode.o:	hashnode.cpp	hashnode.h
 						g++	-g	-std=c++11	-c	hashnode.cpp
+
+clean:
+			rm *.o hashtable
+			clean done
