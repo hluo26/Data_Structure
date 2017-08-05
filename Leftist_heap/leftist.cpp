@@ -41,7 +41,7 @@ void leftist::insertion(int x,node* subtree)
     node* newnode = new node();
     newnode->setvalue(x);
     newnode->setdistance(0);
-    std::cout<<"start merge"<<std::endl;
+    //std::cout<<"start merge"<<std::endl;
     m_root = merge(m_root,newnode);
 }
 
@@ -56,7 +56,7 @@ node* leftist::merge(node* root1,node* root2)
 {
   if(root1==nullptr && root2!=nullptr)
   {
-    std::cout<<"first node"<<std::endl;
+    //std::cout<<"first node"<<std::endl;
     return root2;
   }
   else if(root2==nullptr && root1!=nullptr)
@@ -78,12 +78,6 @@ node* leftist::merge(node* root1,node* root2)
 
 node* leftist::merge1(node* root1,node* root2)
 {
-  if(root1->getleft()==nullptr)
-  {
-    root1->setleft(root2);
-  }
-  else
-  {
     node* rightchild = root1->getright();
     root1->setright(merge(rightchild,root2));
     int leftdis = -1;
@@ -108,15 +102,7 @@ node* leftist::merge1(node* root1,node* root2)
     {
       root1->setdistance((root1->getright())->getdistance()+1);
     }
-  }
   return root1;
-}
-
-void leftist::swap(node* x, node* y)
-{
-   node* temp = x;
-   x = y;
-   y = temp;
 }
 
 void leftist::swapchild(node* subtree)
@@ -216,6 +202,7 @@ void leftist::print(node* root, int x)
         printlevel(i,m_root);
         std::cout<<std::endl;
       }
+      std::cout<<std::endl;
     }
     else
     {

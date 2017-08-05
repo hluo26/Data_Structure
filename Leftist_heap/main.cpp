@@ -14,4 +14,13 @@ int main()
   l->printorder(4);
   l->deletemin();
   l->printorder(4);
+  l->deletemin();
+  l->printorder(1);
+  l->printorder(4);
+  l->deletemin();
+  l->printorder(4);
+  l->deletemin();
+  l->printorder(4);
+  l->deletemin();
+  l->printorder(4);
 }
