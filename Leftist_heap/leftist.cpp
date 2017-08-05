@@ -1,11 +1,13 @@
 #include"leftist.h"
 #include<iostream>
 
+/*constructor*/
 leftist::leftist()
 {
   m_root = nullptr;
 }
 
+/*destructor which calls the deletion*/
 leftist::~leftist()
 {
   if(m_root!=nullptr)
@@ -14,6 +16,7 @@ leftist::~leftist()
   }
 }
 
+/*traverse the heap and delete each element*/
 void leftist::deletion(node* subtree)
 {
   if(subtree!=nullptr)
@@ -31,20 +34,26 @@ void leftist::deletion(node* subtree)
   }
 }
 
+/*the function to call insertion*/
 void leftist::insert(int x)
 {
   insertion(x,m_root);
 }
 
+/*while inserting a new element, we perform merge(root,newnode),
+  the root is the top of this heap, and newnode will be seemed
+  as a leftist heap which contains only one element x*/
 void leftist::insertion(int x,node* subtree)
 {
     node* newnode = new node();
     newnode->setvalue(x);
     newnode->setdistance(0);
-    //std::cout<<"start merge"<<std::endl;
     m_root = merge(m_root,newnode);
 }
 
+/*while deleting the min element of heap, we just remove the top
+  of the leftist heap, the do merge for its left child and right
+  child*/
 void leftist::deletemin()
 {
   node* old = m_root;
@@ -52,11 +61,13 @@ void leftist::deletemin()
   delete old;
 }
 
+/*The merge function takes two leftist heaps,root1 and root2,
+  and returns one leftist heap which contains the union of elements
+  from root1 and root2*/
 node* leftist::merge(node* root1,node* root2)
 {
   if(root1==nullptr && root2!=nullptr)
   {
-    //std::cout<<"first node"<<std::endl;
     return root2;
   }
   else if(root2==nullptr && root1!=nullptr)
@@ -65,21 +76,20 @@ node* leftist::merge(node* root1,node* root2)
   }
   else
   {
+    /*if root1's value is larger than root2, we will swap them to make
+      sure the smallest element is on the top of heap*/
     if(root1->getvalue()>root2->getvalue())
     {
-      return merge1(root2,root1);
+      node* temp = root1;
+      root1 = root2;
+      root2 = temp;
     }
-    else
-    {
-      return merge1(root1,root2);
-    }
-  }
-}
-
-node* leftist::merge1(node* root1,node* root2)
-{
+    /*operate merge function on the right side of root1, if root1 doesn't have
+      a right child, it will returns root2 as its right child, otherwise merge
+      function will operate recursively until it finds the root without right child*/
     node* rightchild = root1->getright();
     root1->setright(merge(rightchild,root2));
+    /*initialize the distance from root to a null path as -1*/
     int leftdis = -1;
     int rightdis = -1;
     if(root1->getleft()!=nullptr)
@@ -90,10 +100,15 @@ node* leftist::merge1(node* root1,node* root2)
     {
       rightdis = (root1->getright())->getdistance();
     }
+    /*comparing the root's distance(from root to a external node) to the left side
+      and the right side, if right one is larger, swap them*/
     if(leftdis < rightdis)
     {
       swapchild(root1);
     }
+    /*while root doesn't have a right child,it means it is a external, then its
+      distance will be 0. Otherwise, it will be the distance from an external node
+      + 1*/
     if(root1->getright()==nullptr)
     {
       root1->setdistance(0);
@@ -102,9 +117,11 @@ node* leftist::merge1(node* root1,node* root2)
     {
       root1->setdistance((root1->getright())->getdistance()+1);
     }
-  return root1;
+    return root1;
+  }
 }
 
+/*swapping left child and right child for one node*/
 void leftist::swapchild(node* subtree)
 {
   if(subtree!=nullptr)
