@@ -1,11 +1,11 @@
 #include<iostream>
-#include"leftist.h"
+#include"skew.h"
 
 using namespace std;
 
 int main()
 {
-  leftist* l = new leftist();
+  skew* l = new skew();
   int array[11] = {4,3,7,9,2,6,1,5,8,10,11};
   for(int i=0;i<11;i++)
   {
